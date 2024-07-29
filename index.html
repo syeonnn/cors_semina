@@ -10,9 +10,9 @@
         .textarea-small {
             height: 100px; /* 필요에 따라 높이를 조정 */
         }
-        /* textarea 가로 길이 조정 */
-        .textarea-narrow {
-            width: 80%; /* 필요에 따라 너비를 조정 */
+        /* textarea와 div의 가로 길이를 일치시키기 위한 사용자 정의 너비 */
+        .full-width {
+            width: 100%; /* 부모 div의 너비에 맞추기 위한 설정 */
         }
     </style>
     <script src="app1.js"></script>
@@ -62,12 +62,14 @@
         <div class="flex justify-between items-start space-x-4">
             <div class="w-1/3 bg-white p-4 shadow-md rounded-lg">
                 <p class="font-semibold mb-2">클라이언트</p>
-                <textarea class="textarea-small textarea-narrow p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"></textarea>
-                <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">전송</button>
+                <textarea class="textarea-small full-width p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"></textarea>
             </div>
-            <div class="w-1/3 bg-white p-4 shadow-md rounded-lg">
+            <button class="px-2 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600">전송</button>
+        </div>
+        <div class="flex-1 bg-white p-4 shadow-md rounded-lg flex flex-col justify-between">
+            <div class="flex flex-col w-full">
                 <p class="font-semibold mb-2">서버</p>
-                <textarea class="textarea-small textarea-narrow p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"></textarea>
+                <textarea class="textarea-small full-width p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"></textarea>
             </div>
         </div>
     </div>
