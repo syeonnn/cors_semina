@@ -7,24 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const xhr = new XMLHttpRequest();
         const formData = new FormData(form);
 
-        xhr.open('POST', '/simple', true);
-
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    try {
-                        const result = JSON.parse(xhr.responseText);
-                        alert(result.message);
-                    } catch (error) {
-                        console.error('Error parsing JSON response:', error);
-                        alert('An error occurred while parsing the response.');
-                    }
-                } else {
-                    console.error('Error with the request:', xhr.statusText);
-                    alert('An error occurred while sending the request.');
-                }
+        xhr.onload = () => {
+            if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+                const responseData = xhr.responseText; // responseText: 서버로부터 받은 응답 데이터
+                const result = JSON.parse(responseData); // JSON 역직렬화
+                console.log(result); 
             }
-        };
+        }
+
+        xhr.open('POST', '/simple');
 
         xhr.send(formData);
     };
