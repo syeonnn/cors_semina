@@ -1,4 +1,29 @@
 import express, { json } from 'express';
 import HTTP from 'superagent';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url'; // 추가된 부분
+
+
 dotenv.config();
+
+const app = express();
+
+// __dirname 대체 코드
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(json());
+
+app.get('/', (_, response) => {
+    response.sendFile(path.join(__dirname, 'index.html'));
+});
+
+const port = 8000;
+app.listen(port,
+    () => console.log(`http://127.0.0.1:${port}/ 서버 프로세스가 8000번 포트에서 실행 중입니다.`)
+);
+
+app.post('/simple', (request, response) => {
+    console.log('body: ', request.body);
+})
