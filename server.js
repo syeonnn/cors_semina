@@ -14,7 +14,9 @@ const __dirname = path.dirname(__filename);
 // 정적 파일 제공 설정
 app.use(express.static(__dirname));
 
-app.use(json());
+// 미들웨어 설정
+app.use(express.urlencoded({ extended: true })); // URL-encoded 형식의 요청 본문을 파싱
+app.use(express.json()); // JSON 형식의 요청 본문을 파싱
 
 app.get('/', (_, response) => {
     response.sendFile(path.join(__dirname, 'index.html'));
@@ -27,5 +29,5 @@ app.listen(port, () => {
 
 app.post('/simple', (request, response) => {
     console.log('body: ', request.body);
-    response.json({ message: '요청이 성공적으로 처리되었습니다.' });
+    response.json({ message: '요청이 성공적으로 처리되었습니다.', data: request.body });
 });
