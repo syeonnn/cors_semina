@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import multer from "multer";
 import { fileURLToPath } from "url";
+import cors from 'cors';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(__dirname));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.get("/", (_, response) => {
   response.sendFile(path.join(__dirname, "index.html"));
@@ -31,6 +33,7 @@ app.listen(port, () => {
 
 app.post("/simple", upload.none(), (req, res) => {
   console.log("body: ", req.body);
+  
   res.json({
     message: "요청이 성공적으로 처리되었습니다.",
     res_body: req.body,
