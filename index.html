@@ -19,7 +19,6 @@
       }
     </style>
     <script src="app1.js"></script>
-    <!-- <script src="app2.js"></script> -->
   </head>
   <body class="bg-gray-100 flex-col items-center justify-center min-h-screen">
     <div class="container mx-auto p-4">
@@ -89,26 +88,27 @@
     </div>
     <div class="container mx-auto p-4">
       <div class="flex justify-between items-start space-x-4">
-        <div class="w-1/3 bg-white p-4 shadow-md rounded-lg">
-          <p class="font-semibold mb-2">클라이언트</p>
-          <textarea
-            class="textarea-small full-width p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
-          ></textarea>
+        <div class="w-1/2 bg-white p-4 shadow-md rounded-lg">
+          <p class="font-semibold mb-2">2. credential request</p>
+          <button
+            id="create-cookie"
+            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Create cookie
+          </button>
+          <button
+            id="show-cookie"
+            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Show cookie
+          </button>
         </div>
-        <button
-          class="px-2 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          전송
-        </button>
-      </div>
-      <div
-        class="flex-1 bg-white p-4 shadow-md rounded-lg flex flex-col justify-between"
-      >
-        <div class="flex flex-col w-full">
-          <p class="font-semibold mb-2">서버</p>
-          <textarea
-            class="textarea-small full-width p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
-          ></textarea>
+        <div class="w-1/2 bg-white p-4 shadow-md rounded-lg">
+          <p class="font-semibold mb-2">응답 결과</p>
+          <div
+            id="cre-response-result"
+            class="textarea-small textarea-narrow p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
+          ></div>
         </div>
       </div>
     </div>

@@ -1,9 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("form");
-  const btn = document.getElementById("preflightButton");
-  const responseContainer = document.getElementById("reponse-result");
-
-  form.onsubmit = (e) => {
+  document.getElementById("form").onsubmit = (e) => {
     e.preventDefault();
 
     const xhr = new XMLHttpRequest();
@@ -21,25 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     xhr.send(formData);
   };
 
-  btn.addEventListener("click", (e) => {
+  document.getElementById("preflightButton").addEventListener("click", (e) => {
     e.preventDefault();
-
-    // const xhr = new XMLHttpRequest();
-
-    // xhr.open("GET", "http://localhost:3000/data");
-    // xhr.send();
-
-    // xhr.onload = () => {
-    //   if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-    //     const responseData = xhr.responseText;
-    //     const result = JSON.parse(responseData);
-    //     console.log(result);
-    //     console.log(result.name, result.favoriteFood);
-    //     responseContainer.textContent = `${result.name} 의 최애음식 ${result.favoriteFood}`;
-    //   } else {
-    //     console.log(`error: ${xhr.status}`);
-    //   }
-    // };
 
     fetch("http://localhost:3000/data", {
       method: "GET",
@@ -58,8 +37,40 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(result);
         console.log(result.name, result.favoriteFood);
 
-        // 응답 결과를 표시
-        responseContainer.textContent = `${result.name} 의 최애음식 ${result.favoriteFood}`;
+        document.getElementById(
+          "reponse-result"
+        ).textContent = `${result.name} 의 최애음식 ${result.favoriteFood}`;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
+
+  document.getElementById("create-cookie").addEventListener("click", () => {
+    fetch("http://localhost:3000/set-cookie", {
+      method: "GET",
+      credentials: "include",
+    });
+  });
+
+  document.getElementById("show-cookie").addEventListener("click", () => {
+    fetch("http://localhost:3000/send-cookie", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => {
+        console.log(response);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((result) => {
+        console.log(result);
+
+        document.getElementById("cre-response-result").textContent =
+          JSON.stringify(result.cookies);
       })
       .catch((error) => {
         console.error("Error:", error);
